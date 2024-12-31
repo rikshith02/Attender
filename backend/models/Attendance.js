@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 
-const AttendanceSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  clockIn: { type: Date },
-  clockOut: { type: Date },
+// Define the Attendance record schema
+const attendanceRecordSchema = new mongoose.Schema({
+  date: { type: String, required: true },  // Format: YYYY-MM-DD
+  clockInTime: { type: String },
+  clockOutTime: { type: String },
+  status: { type: String, enum: ['Normal', 'Late'], default: 'Normal' },
 });
 
-module.exports = mongoose.model('Attendance', AttendanceSchema);
+// Export the Attendance record schema
+module.exports = mongoose.model('Attendance', attendanceRecordSchema);

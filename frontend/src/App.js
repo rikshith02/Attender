@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
-import Dashboard from './components/Dashboard/Dashboard';
+import EDashboard from './components/Dashboard/EDashboard';
+import TDashboard from './components/Dashboard/TDashboard';
+import MDashboard from './components/Dashboard/MDashboard';
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/edashboard" element={<EDashboard />} />
+          <Route path="/Tdashboard" element={<TDashboard />} />
+          <Route path="/mdashboard" element={<MDashboard />} />
         </Routes>
       </Router>
     </AuthProvider>
