@@ -1,38 +1,96 @@
+:root {
+  --background-color: #282c34;
+  --text-color: white;
+  --link-color: #61dafb;
+  --header-font-size: calc(10px + 2vmin);
+  --logo-size: 40vmin;
+  --spin-duration: 20s;
+  --spin-easing: linear;
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: var(--logo-size);
   pointer-events: none;
+  filter: drop-shadow(0 0 10px var(--link-color));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.App-logo:hover {
+  transform: scale(1.1) rotate(15deg);
+  filter: drop-shadow(0 0 20px var(--link-color));
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite var(--spin-duration) var(--spin-easing);
   }
 }
 
 .App-header {
-  background-color: #282c34;
+  background: radial-gradient(circle, rgba(40, 44, 52, 1) 0%, rgba(20, 20, 25, 1) 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: var(--header-font-size);
+  color: var(--text-color);
+  padding: 20px;
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--link-color);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+.App-link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--link-color);
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.App-link:hover {
+  color: white;
+}
+
+.App-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 @keyframes App-logo-spin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(8px + 2vmin);
+    padding: 10px;
+  }
+
+  .App-logo {
+    height: calc(var(--logo-size) / 1.5);
   }
 }
